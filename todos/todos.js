@@ -16,7 +16,14 @@ const logoutButton = document.querySelector('#logout');
 const deleteButton = document.querySelector('.delete-button');
 
 todoForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
     // on submit, create a todo, reset the form, and display the todos
+    const input = new FormData(todoForm);
+    const todo = input.get('todo');
+    await createTodo(todo);
+    todoForm.reset();
+    todos = await getTodos();
+    displayTodos();
 });
 
 // create todo state
@@ -27,7 +34,7 @@ let todos = [];
 // swap out todo in array
 // call displayTodos
 
-async function displayTodos() {
+function displayTodos() {
     // clear the container (.innerHTML = '')
     todosEl.innerHTML = '';
     // display the list of todos,
