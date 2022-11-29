@@ -15,6 +15,7 @@ export function renderTodo(todo, handleComplete) {
     // add event listener for click and call handleComplete function
     div.addEventListener('click', async () => {
         await completeTodo(todo.id);
+        location.reload();
     });
 
     // return the div

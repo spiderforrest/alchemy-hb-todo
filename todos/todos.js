@@ -22,19 +22,16 @@ todoForm.addEventListener('submit', async (e) => {
     const todo = input.get('todo');
     await createTodo(todo);
     todoForm.reset();
-    todos = await getTodos();
     displayTodos();
 });
-
-// create todo state
-let todos = [];
 
 // add async complete todo handler function
 // call completeTodo
 // swap out todo in array
 // call displayTodos
 
-function displayTodos() {
+async function displayTodos(todos) {
+    todos = await getTodos();
     // clear the container (.innerHTML = '')
     todosEl.innerHTML = '';
     // display the list of todos,
@@ -47,9 +44,7 @@ function displayTodos() {
 }
 
 // add page load function
-window.addEventListener('load', async () => {
-    // fetch the todos and store in state
-    todos = await getTodos();
+self.addEventListener('load', () => {
     // call displayTodos
     displayTodos();
 });
